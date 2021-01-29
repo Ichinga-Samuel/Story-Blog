@@ -1,0 +1,27 @@
+extends ../layout
+block header
+    div.row
+        form(action=`/stories/${story._id}` method="POST" class="col s12")
+            input(type="hidden" name="_method" value="PUT")
+            div.row
+                div.input-field
+                    input(type="text" id="title" name="title" value=story.title)
+                    label(for="title") Title
+
+            div.row
+                div.input-field
+                    select(id="status" name="status")
+                        option(value="public") Public
+                        option(value="private") Private
+                        option(value="unpublished") Unpublished
+                    label(for='status') Status
+
+            div.row
+                div.input-field
+                    h5 Tell Your Story
+                    textarea(id="body" name="body")=story.body
+
+            div.row
+                input(type="submit" value="save" class="btn")
+                a(href="/dashboard" class="btn orange") Cancel
+

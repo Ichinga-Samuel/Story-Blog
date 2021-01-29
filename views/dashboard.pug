@@ -1,0 +1,38 @@
+extends layout
+
+block header
+    h6 Dashboard
+    h3 Welcome #{name}
+    if Object.keys(stories).length > 0
+        p These are your Stories
+        table(class="striped")
+            thead
+                tr
+                    th Title
+                    th Date
+                    th Status
+                    th
+            tbody
+                each story in stories
+
+                    tr
+                        td.
+                            #[a(href=`/stories/${story._id}`) #{story.title}]
+                        td=formatter.formatDate(story.createdAt,'MMMM Do YYYY, h:mm:ss a' )
+                        td
+                            span(class='dash-status')=story.status
+                        td
+                            a(href=`/stories/edit/${story._id}` class="btn btn-float")
+                                i(class="fas fa-edit")
+                            form(action=`/stories/${story._id}` method="POST" id="delete-form")
+                                input(type="hidden", name="_method" value="DELETE")
+                                button(type="submit" class=" btn red")
+                                    i(class="fas fa-trash")
+    else
+        p You have not created any stories yet
+
+
+
+
+
+

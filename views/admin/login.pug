@@ -1,0 +1,13 @@
+extends ../layout
+
+block cont
+    form(action="/admin" method="POST" class="col s12")
+        div.row
+            div.input-field
+                input(type="text" name="userName", id="un")
+                label(for="un") User Name
+            div.input-field
+                input(type="password" name="password", id="pd")
+                label(for="pd") Password
+            input(type="submit" value="Login" class="btn")
+

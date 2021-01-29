@@ -1,0 +1,22 @@
+extends ../layout
+
+block header
+    h1 Stories
+    div.row
+        each story in stories
+            div(class="col s12 m4")
+                div(class="card")
+                    div(class="card-image").
+                        !{formatter.editIcon(story.user, user, story._id)}
+                    div(class="card-content center-align")
+                        h5=story.title
+                        p=formatter.stripTags(formatter.truncate(story.body, 150))
+                        br
+                        div.chip
+                            img(src=`${story.user.image}` alt="")
+                            a(href=`/stories/user/${story.user._id}`) #{story.user.displayName}
+                    div(class="center-align card-action ")
+                        a(href=`/stories/${story._id}` class='btn-grey') Read More
+
+        else
+            p No Story to display
